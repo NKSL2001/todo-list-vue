@@ -3,7 +3,7 @@ on:
   workflow_dispatch: # manual trigger
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -32,6 +32,7 @@ jobs:
         run: npm install && npm run build
 
       - name: Build deploying branch
+        continue-on-error: true
         run: |
           find . -mindepth 1 -not -name '_docs' -not -name '.git' -not -path './.git/*' -not -path './dist*' -exec rm -rf {} +
           mv dist/* .

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TodoForm from './components/TodoForm.vue'
+import TodoItem from './components/TodoItem.vue'
 import type { Todo } from './interfaces/ITodo'
 import { useTodoStore } from './stores/todo'
 
@@ -13,34 +14,15 @@ function addNewTodo(todoItem: Todo) {
 <template>
   <TodoForm @add="addNewTodo" />
 
-  {{ store.todoList }}
+  <ul>
+    <h2>Currently {{ store.todoList.length }} todo in list</h2>
+    <TodoItem v-for="(todoItem, index) in store.todoList" :key="index" :todo="todoItem" />
+  </ul>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+ul {
+  height: 90vh;
+  overflow-y: auto;
 }
 </style>

@@ -34,7 +34,7 @@ jobs:
       - name: Build deploying branch
         continue-on-error: true
         run: |
-          find . -mindepth 1 -not -name '_docs' -not -name '.git' -not -path './.git/*' -not -path './dist*' -exec rm -rf {} +
+          find . -mindepth 1 -not -name '_docs' -not -name '.git' -not -path './.git/*' -not -path './dist*' -exec rm -rf {} + 2>/dev/null
           mv dist/* .
           rmdir dist
 

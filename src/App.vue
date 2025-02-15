@@ -16,7 +16,12 @@ function addNewTodo(todoItem: Todo) {
 
   <ul>
     <h2>Currently {{ store.todoList.length }} todo in list</h2>
-    <TodoItem v-for="(todoItem, index) in store.todoList" :key="index" :todo="todoItem" />
+    <TodoItem
+      v-for="(todoItem, index) in store.todoList"
+      :key="index"
+      :todo="todoItem"
+      @delete="store.deleteTodo(index)"
+    />
   </ul>
 </template>
 

@@ -5,6 +5,7 @@
     <span>{{ props.todo.type }}</span>
     <span>{{ props.todo.bookingRequired }}</span>
     <span>{{ props.todo.accessibility }}</span>
+    <button @click="$emit('delete')">Delete</button>
   </li>
 </template>
 

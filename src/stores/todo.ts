@@ -9,5 +9,9 @@ export const useTodoStore = defineStore('todo', () => {
         todoList.value.push(todo)
     }
 
-    return { todoList, addTodo }
+    function deleteTodo(index: number) {
+        todoList.value.splice(index, 1)
+    }
+
+    return { todoList, addTodo, deleteTodo }
 })

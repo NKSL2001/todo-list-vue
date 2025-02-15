@@ -1,19 +1,28 @@
 <template>
   <form @submit.prevent="handleSubmit">
+    <label for="activity">Activity</label>
     <input type="text" placeholder="Activity" name="activity" v-model="formData.activity" />
+
+    <label for="price">Price</label>
     <input type="number" placeholder="Price" name="price" v-model="formData.price" />
+
+    <label for="type">Type</label>
     <select placeholder="Type" name="type" v-model="formData.type">
       <option value="education">Education</option>
-      <option value="recreational">recreational</option>
-      <option value="social">social</option>
-      <option value="diy">diy</option>
-      <option value="charity">charity</option>
-      <option value="cooking">cooking</option>
-      <option value="relaxation">relaxation</option>
-      <option value="music">music</option>
-      <option value="busywork">busywork</option>
+      <option value="recreational">Recreational</option>
+      <option value="social">Social</option>
+      <option value="diy">DIY</option>
+      <option value="charity">Charity</option>
+      <option value="cooking">Cooking</option>
+      <option value="relaxation">Relaxation</option>
+      <option value="music">Music</option>
+      <option value="busywork">Busywork</option>
     </select>
+
+    <label for="bookingRequired">Booking Required</label>
     <input type="checkbox" name="bookingRequired" v-model="formData.bookingRequired" />
+
+    <label for="accessibility">Accessibility</label>
     <div>
       <input
         type="range"
@@ -22,9 +31,11 @@
         max="1"
         step="0.01"
         v-model="formData.accessibility"
+        style="width: calc(100% - 5ch)"
       />
+      {{ formData.accessibility }}
     </div>
-    <button type="submit">Add</button>
+    <button type="submit" style="grid-column: 1 / 3">Add</button>
   </form>
 </template>
 
@@ -56,7 +67,9 @@ function handleSubmit() {
 
 <style scoped>
 form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  height: fit-content;
 }
 </style>

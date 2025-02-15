@@ -1,11 +1,11 @@
 <template>
   <li>
-    <span>{{ props.todo.activity }}</span>
-    <span>{{ props.todo.price }}</span>
-    <span>{{ props.todo.type }}</span>
-    <span>{{ props.todo.bookingRequired }}</span>
-    <span>{{ props.todo.accessibility }}</span>
     <button @click="$emit('delete')">Delete</button>
+    <span>Activity: {{ props.todo.activity }}</span>
+    <span>Price: {{ props.todo.price }}</span>
+    <span>Type: {{ props.todo.type }}</span>
+    <span>Booking is {{ !props.todo.bookingRequired ? 'not' : '' }} required</span>
+    <span>Accessibility: {{ props.todo.accessibility }}</span>
   </li>
 </template>
 
@@ -18,7 +18,20 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-li span {
-  display: block;
+li {
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 5px;
+  margin-block: 5px;
+
+  span {
+    display: block;
+  }
+  button {
+    float: right;
+    ::after {
+      float: none;
+    }
+  }
 }
 </style>

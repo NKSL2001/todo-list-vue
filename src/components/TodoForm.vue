@@ -46,3 +46,10 @@ function handleSubmit() {
   emit('add', formData)
 }
 </script>
+
+<style scoped>
+form {
+  display: flex;
+  flex-direction: column;
+}
+</style>

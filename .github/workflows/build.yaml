@@ -31,10 +31,12 @@ jobs:
       - name: Build site
         run: npm install && npm run build
 
-      - name: Build deploying branch
+      - name: Remove all files except git and dist
         continue-on-error: true
         run: |
-          find . -mindepth 1 -not -name '_docs' -not -name '.git' -not -path './.git/*' -not -path './dist*' -exec rm -rf {} + 2>/dev/null
+          find . -mindepth 1 -not -name '.git' -not -path './.git/*' -not -path './dist*' -exec rm -rf {} + 2>/dev/null
+      - name: Build deploying branch
+        run: |
           mv dist/* .
           rmdir dist
 

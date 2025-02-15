@@ -1,9 +1,10 @@
-import { ref, type Ref } from 'vue'
+import { type Ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { Todo } from '@/interfaces/ITodo'
+import { useStorage } from '@vueuse/core'
 
 export const useTodoStore = defineStore('todo', () => {
-    const todoList: Ref<Array<Todo>> = ref([])
+    const todoList: Ref<Array<Todo>> = useStorage('todoList', [], localStorage)
 
     function addTodo(todo: Todo) {
         todoList.value.push(todo)

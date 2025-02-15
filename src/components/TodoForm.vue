@@ -43,7 +43,14 @@ const formData: Reactive<Todo> = reactive({
 })
 
 function handleSubmit() {
-  emit('add', formData)
+  // clone object to prevent hand in same reactive object
+  emit('add', { ...formData })
+  // reset form
+  formData.activity = ''
+  formData.price = 0
+  formData.type = ''
+  formData.bookingRequired = false
+  formData.accessibility = 0
 }
 </script>
 

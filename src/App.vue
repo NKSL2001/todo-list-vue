@@ -36,5 +36,6 @@ const todoCount = computed(() => store.todoList.length)
 ul {
   height: 90vh;
   overflow-y: auto;
+  padding-inline-start: 0;
 }
 </style>

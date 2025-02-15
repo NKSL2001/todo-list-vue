@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import TodoForm from './components/TodoForm.vue'
 import TodoItem from './components/TodoItem.vue'
 import type { Todo } from './interfaces/ITodo'
@@ -9,18 +10,24 @@ const store = useTodoStore()
 function addNewTodo(todoItem: Todo) {
   store.addTodo(todoItem)
 }
+
+function deleteTodoItem(index: number) {
+  store.deleteTodo(index)
+}
+
+const todoCount = computed(() => store.todoList.length)
 </script>
 
 <template>
   <TodoForm @add="addNewTodo" />
 
   <ul>
-    <h2>Currently {{ store.todoList.length }} todo in list</h2>
+    <h2>Currently {{ todoCount }} todo in list</h2>
     <TodoItem
       v-for="(todoItem, index) in store.todoList"
       :key="index"
       :todo="todoItem"
-      @delete="store.deleteTodo(index)"
+      @delete="deleteTodoItem(index)"
     />
   </ul>
 </template>

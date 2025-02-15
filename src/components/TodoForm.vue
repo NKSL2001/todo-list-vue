@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <input type="text" placeholder="Activity" name="activity" v-model="formData.activity" />
     <input type="number" placeholder="Price" name="price" v-model="formData.price" />
     <select placeholder="Type" name="type" v-model="formData.type">
@@ -32,12 +32,17 @@
 import { reactive, type Reactive } from 'vue'
 import type { Todo } from '@/interfaces/ITodo'
 
+const emit = defineEmits(['add'])
+
 const formData: Reactive<Todo> = reactive({
-  id: -1,
   activity: '',
   price: 0,
   type: '',
   bookingRequired: false,
   accessibility: 0,
 })
+
+function handleSubmit() {
+  emit('add', formData)
+}
 </script>

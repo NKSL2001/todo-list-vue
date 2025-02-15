@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import TodoForm from './components/TodoForm.vue'
+import type { Todo } from './interfaces/ITodo'
+import { useTodoStore } from './stores/todo'
+
+const store = useTodoStore()
+
+function addNewTodo(todoItem: Todo) {
+  store.addTodo(todoItem)
+}
 </script>
 
 <template>
-  <TodoForm />
+  <TodoForm @add="addNewTodo" />
+
+  {{ store.todoList }}
 </template>
 
 <style scoped>
